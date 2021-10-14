@@ -1,0 +1,29 @@
+<ul class="product-details-tags">
+  {% for tag in product.tags %}
+{% comment %}
+  <li><a href="/collections/all/{{ tag | handleize }}">{{ tag }}</a></li>
+{% endcomment %}
+
+    {% if tag == 'Regular fit' or tag == 'Semi slim fit' or tag == 'Slim fit' or tag == 'Muscle fit' or tag == 'Taglia comoda' %}
+    <li><strong>Vestibilità:</strong> {{ tag }}</li>
+	{% endif %}
+
+    {% if tag == 'Four season' or tag == 'Fall winter' or tag == 'Spring summer' %}
+    <li><strong>Stagione:</strong> {{ tag }}</li>
+	{% endif %}
+
+    {% if tag == 'Button down' or tag == 'Collo coreana' or tag == 'Collo francese' or tag == 'Collo italiano' or tag == 'Dolcevita' or tag == 'Girocollo' or tag == 'Lupetto' or tag == 'Scollo a V' %}
+    <li><strong>Colletto:</strong> {{ tag }}</li>
+	{% endif %}
+{% comment %}
+    {% if tag == 'Conte Max' or tag == 'Coveri Collection' or tag == 'Coveri Contemporary' or tag == 'Coveri Morin' or tag == 'Daniel Hechter' or tag == 'Guru' or tag == 'Herod' or tag == 'Lee Cooper' or tag == 'Liabel' or tag == 'Mr Hope' or tag == 'Renato Marielli' or tag == 'Sky T-Shirt' or tag == 'Uvaspina' %}
+    <li><strong>Brand:</strong> {{ tag }}</li>
+	{% endif %}
+{% endcomment %}
+{% comment %}
+    {% if tag == 'Manica corta' or tag == 'Manica lunga' or tag == 'Smanicato' %}
+    <li><strong>Maniche:</strong> {{ tag }}</li>
+	{% endif %}
+{% endcomment %}
+  {% endfor %}
+</ul>
