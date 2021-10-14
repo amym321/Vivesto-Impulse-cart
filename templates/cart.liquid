@@ -191,7 +191,11 @@
                 </div>
 
                 <div class="grid grid--full cart__row--table">
-                {% render 'fatturazione-elettronica' %}
+                {% comment %} render 'fatturazione-elettronica' {% endcomment %}
+                </div>
+                {% comment %} code added - am storetasker {% endcomment %}
+                <div class="grid grid--full cart__row--table">
+                  {% render 'programma-districts' %}
                 </div>
                 
                 <small>
