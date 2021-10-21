@@ -181,19 +181,6 @@ div.header-item--navigation ul.site-nav > li:nth-child(2) div.page-width > div.g
     float: right;
     width: 100%;
 }
-/* .pd-container .pd-campi > div:not(.pd-tipo-cliente) label:not(.variant__button-label) {
-	text-transform: none;
-}
-.pd-container .pd-campi > div.pd-tipo-cliente {
-	margin-top: 20px;
-}
-.pd-container .pd-campi .pd-tipo-cliente > label {
-    display: inline-block;
-    margin-right: 20px;
-}
-.pd-container .pd-campi .pd-tipo-cliente > label:last-child {
-    margin-right: 0px;
-} */
 
 @media only screen and (max-width:768px){
 	.pd-container {

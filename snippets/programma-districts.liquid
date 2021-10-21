@@ -1,3 +1,5 @@
+{% comment %} code added - am. Join the program on the cart {% endcomment %}
+
 <div id="pd-aderiscoalprogramma" class="pd-container">
   <div>
     <label>
@@ -9,31 +11,8 @@
   </div>
   <div class="pd-campi">
     <div class="pd-tipo-cliente">
-      <!-- <label>
-        <input type="radio"
-               name="attributes[pd-tipo-cliente]"
-               value="private"
-               />
-        <span>Privato</span>
-      </label> -->
-      <!-- <label>
-        <input type="radio"
-               name="attributes[pd-tipo-cliente]"
-               value="company"
-               {% if cart.attributes["pd-tipo-cliente"] == "company" %}checked{% endif %}/>
-        <span>Azienda</span>
-      </label> -->
     </div>
-    <!-- <div>
-      <label>
-        <span>Azienda - Ragione Sociale</span>
-        <input type="text"
-               name="attributes[fe-azienda]"
-               value="{{ cart.attributes["fe-azienda"] }}"/>
-      </label>
-    </div> -->
     <div>
-      <!-- <div> -->
         <label>
           <span>Inserisci il tuo codice</span>
           <input type="text"
@@ -42,60 +21,7 @@
                  name="attributes[pd-codice-programma]"
                  value="{{ cart.attributes["pd-codice-programma"] }}"/>
        </label>
-      <!-- </div> -->
     </div>
-    <!-- <div>
-      <label>
-        <span>Partita IVA</span>
-        <input type="text"
-               maxlength="16"
-               name="attributes[fe-piva]"
-               value="{{ cart.attributes["fe-piva"] }}"/>
-      </label>
-    </div>
-    <div>
-      <label>
-        <span>Codice SDI</span>
-        <input type="text"
-               maxlength="7"
-               name="attributes[fe-sdi]"
-               value="{{ cart.attributes["fe-sdi"] }}"/>
-      </label>
-    </div>
-    <div>
-      <label>
-        <span>PEC</span>
-        <input type="email"
-               name="attributes[fe-pec]"
-               value="{{ cart.attributes["fe-pec"] }}"/>
-      </label>
-    </div>
-    <div>
-      <label>
-        <span>CIG</span>
-        <input type="text"
-               maxlength="10"
-               name="attributes[fe-cig]"
-               value="{{ cart.attributes["fe-cig"] }}"/>
-      </label>
-    </div>
-    <div>
-      <label>
-        <span>CUP</span>
-        <input type="text"
-               maxlength="15"
-               name="attributes[fe-cup]"
-               value="{{ cart.attributes["fe-cup"] }}"/>
-      </label>
-    </div> -->
-    <!-- <div>
-      <label>
-        <input type="checkbox"
-               name="attributes[fe-pagamenti-separati]"
-               value="Yes"{% if cart.attributes["fe-pagamenti-separati"] == "Yes" %} checked{% endif %} />
-        <span style="display: inline;">{{ 'fe.split-payment' | t }}</span>
-      </label>
-    </div> -->
   </div>
 </div>
 
@@ -104,56 +30,40 @@
 {%- endunless -%}
 
 <style>
-  /* .pd-container .pd-campi > div:not(.pd-tipo-cliente) span{ */
+
   .pd-container .pd-campi > div span {
 
     display: block;
     margin-bottom: 5px;
   }
-  /* .pd-container .pd-campi > div:not(.pd-tipo-cliente) input:not([type*='checkbox']){ */
+
   .pd-container .pd-campi > div input:not([type*='checkbox']) {
 
     display: block;
     width: 100%;
     max-width: 500px;
   }
-  /* .pd-container .pd-campi > div.pd-tipo-cliente{ */
-  /* .pd-container .pd-campi > div {
-    margin-bottom: 10px;
-  } */
 </style>
 
 <script type="text/javascript">
-console.log('2');
 
   window.programmaDistricts = function () {
     var is_required2 = {{ is_required2 }};
 
     function init(a) {
       bindProgrammaCodice();
-      // bindSelectCustomer();
       bindSubmitCart();
       updateFormVisibility();
-      console.log('4');
     }
 
     function bindProgrammaCodice() {
       var element = document.querySelector('input[name="attributes[pd-programma]"]');
       element.addEventListener("change", updateFormVisibility, false);
-      console.log('6');
     }
-
-  //   function bindSelectCustomer() {
-  //     var element = document.querySelectorAll('input[name="attributes[pd-tipo-cliente]"]');
-  //     element.forEach(function () {
-  //       addEventListener("change", updateProgrammaCodice, false)
-  //     });
-  //   }
 
     function bindSubmitCart() {
       var element = document.querySelector('#pd-aderiscoalprogramma').closest('form');
       element.addEventListener("submit", checkRequiredInput, false);
-      console.log('8');
     }
 
     function updateFormVisibility() {
@@ -161,23 +71,17 @@ console.log('2');
 
       if (!pdRequest.checked) {
         hideAndDisableAllFields();
-        console.log('10');
       } else {
           updateProgrammaCodice(); 
           showProgrammaCodice();   
-          console.log('12');
       }
-      console.log('14');
     }
 
     function showProgrammaCodice() {     
       var companyFields = [        
-      //   "pd-tipo-cliente" 
           "pd-codice-programma"
       ];
-      // showSingularFields(companyFields);
       showPrivate();
-      console.log('16');
     }
 
     function updateProgrammaCodice() {
@@ -187,20 +91,6 @@ console.log('2');
       if (!pdRequest.checked) {
         return;
       }
-      console.log('18');
-
-      // if (feCustomerType) {
-      //   hideAndDisableAllFields();
-      // //   if (feCustomerType.value === 'private') {
-      // //     showPrivate();
-      // //   } else if (feCustomerType.value === 'company') {
-      // //     showCompany();
-      // //   } else if (feCustomerType.value === 'public-administration') {
-      // //     showPublicAdministration();
-      // //   } else if (feCustomerType.value === 'no-profit') {
-      // //     showNoProfit();
-      // //   }
-      // }
     }
 
     function hideAndDisableAllFields() {
@@ -209,294 +99,42 @@ console.log('2');
       for (let a1 of attributes) {
         if (a1.getAttribute('name').indexOf('pd-programma') > -1) {
           continue;
-          console.log('18');
         }
 
         a1.disabled = true;
         a1.parentElement.parentElement.style.display = "none";
       }
-      console.log('20');
     }
-
-  //   function showAndEnableInvoiceFields() {
-  //     var element = document.querySelectorAll('#pd-aderiscoalprogramma input[name*=fe-]');
-  //     for (let a1 of element) {
-  //       if (a1.getAttribute('name').indexOf('pd-programma') === -1) {
-  //         a1.disabled = false;
-  //         a1.parentElement.parentElement.style.display = "block";
-  //       }
-  //     }
-  //   }
 
     function showSingularFields(fields) {
       for (let field of fields) {
         var attribute_name = 'input[name="attributes[' + field + ']"';
-      //   if (field === "pd-tipo-cliente") {
-      //     var radio = document.querySelectorAll(attribute_name);
-      //     for (i = 0; i < radio.length; i++) {
-      //       radio[i].disabled = false;
-      //       radio[i].parentElement.parentElement.style.display = "block";
-      //     }
-      //   } else {
           document.querySelector(attribute_name).disabled = false;
           document.querySelector(attribute_name).parentElement.parentElement.style.display = "block";
-      //   }
-      console.log('22');
       }
-      console.log('24');
     }
 
-    function showPrivate() {                      //function showProgrammaCodice() { 
+    function showPrivate() { 
       showSingularFields([
-      //   "pd-tipo-cliente",                        //remove
         "pd-codice-programma"
       ]);
-      console.log('26');
     }
 
-  //   function showCompany() {
-  //     showSingularFields([
-  //       "pd-tipo-cliente",
-  //       "fe-azienda",
-  //       "pd-codice-programma",
-  //       "fe-piva",
-  //       "fe-sdi",
-  //       "fe-pec"
-  //     ]);
-  //   }
-
-  //   function showPublicAdministration() {
-  //     showSingularFields([
-  //       "pd-tipo-cliente",
-  //       "fe-azienda",
-  //       "pd-codice-programma",
-  //       "fe-piva",
-  //       "fe-sdi",
-  //       "fe-pec",
-  //       "fe-cig",
-  //       "fe-cup",
-  //       "fe-pagamenti-separati"
-  //     ]);
-  //   }
-
-  //   function showNoProfit() {
-  //     showSingularFields([
-  //       "pd-tipo-cliente",
-  //       "fe-azienda",
-  //       "pd-codice-programma",
-  //       "fe-piva",
-  //       "fe-sdi",
-  //       "fe-pec"
-  //     ]);
-  //   }
-
-    function isProgrammaCodeValid(value) {
-      let exp = '^[a-zA-Z]{6}[0-9]{2}[abcdehlmprstABCDEHLMPRST]{1}[0-9]{2}([a-zA-Z]{1}[0-9]{3})[a-zA-Z]{1}$',
-        re = new RegExp(exp);
-      return re.test(value);
-      console.log('28');
-    }
-
-  //   function isVatValid(value) {
-  //     let exp = '^([a-zA-Z]{2})?[0-9]{11}$',
-  //       re = new RegExp(exp);
-  //     return re.test(value);
-  //   }
-
-  //   function isPecValid(value) {
-  //     let exp = '^[a-zA-Z0-9.!#$%&\'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$',
-  //       re = new RegExp(exp);
-  //     return re.test(value);
-  //   }
-
-  //   function isSdiValid(value) {
-  //     let exp = '^[a-zA-Z0-9]{7}$',
-  //       re = new RegExp(exp);
-  //     return re.test(value);
-  //   }
-
-  //   function isCigValid(value) {
-  //     let exp = '^[a-z0-9]{10}$',
-  //       re = new RegExp(exp);
-  //     return re.test(value);
-  //   }
-
-  //   function isCupValid(value) {
-  //     let exp = '^[a-z0-9]{15}$',
-  //       re = new RegExp(exp);
-  //     return re.test(value);
-  //   }
-
+    // function isProgrammaCodeValid(value) {
+    //   let exp = '^[a-zA-Z]{6}[0-9]{2}[abcdehlmprstABCDEHLMPRST]{1}[0-9]{2}([a-zA-Z]{1}[0-9]{3})[a-zA-Z]{1}$',
+    //     re = new RegExp(exp);
+    //   return re.test(value);
+    // }
 
     function validate() {
       let pdRequest = document.querySelector('input[name="attributes[pd-programma]"]'),
           programmaCode = document.querySelector('#pd-aderiscoalprogramma input[name="attributes[pd-codice-programma]"]');
-      //   feCustomerType = document.querySelector('#pd-aderiscoalprogramma input[name="attributes[pd-tipo-cliente]"]:checked');
-      console.log('x');
-      console.log('programmaCode =' + programmaCode);
-      console.log('pdRequest' + pdRequest);
-      // if (!pdRequest.checked && !is_required2) {
+
       if (!pdRequest.checked) {
-        console.log('y');
-        return;
-      // }else if(!pdRequest.checked && is_required2){
-      //   throw "Completa i campi della fatturazione elettronica";
-      
-      }else if (pdRequest.checked && programmaCode.value.trim() === ''){
-      // }else if (pdRequest.checked ){
-        console.log('z');
-        throw "Deve essere selezionato almeno un tipo di cliente";
+        return;     
+      } else if (pdRequest.checked && programmaCode.value.trim() === '') {
+        throw "Codice programma richiesto";
       }
-      
-
-// let programmaCode = document.querySelector('#pd-aderiscoalprogramma input[name="attributes[pd-codice-programma]"]');
-      
-      //   company = document.querySelector('#pd-aderiscoalprogramma input[name="attributes[fe-azienda]"]'),
-      //   vat = document.querySelector('#pd-aderiscoalprogramma input[name="attributes[fe-piva]"]'),
-      //   pec = document.querySelector('#pd-aderiscoalprogramma input[name="attributes[fe-pec]"]'),
-      //   sdi = document.querySelector('#pd-aderiscoalprogramma input[name="attributes[fe-sdi]"]'),
-      //   cig = document.querySelector('#pd-aderiscoalprogramma input[name="attributes[fe-cig]"]'),   
-      //   cup = document.querySelector('#pd-aderiscoalprogramma input[name="attributes[fe-cup]"]');   
-
-      console.log('32');
-
-      // switch (feCustomerType.value) {
-      //   case 'private':
-      //     if (programmaCode.value.trim() === '') {
-      //       throw "Codice programma richiesto";
-      //     }
-      //     if (!isProgrammaCodeValid(programmaCode.value)) {
-      //       throw "Codice programma non valido";
-      //     }
-      //     break;
-
-      //   case 'company':
-      //     if (company.value.trim() === '') {
-      //       throw "Nome compagnia richiesto";
-      //     }
-
-      //     if (programmaCode.value.trim() === '' && vat.value.trim() === '') {
-      //       throw "Richiesta partita IVA o codice fiscale";
-      //     }
-
-      //     if (programmaCode.value.trim() !== '') {
-      //       if (!isprogrammaCodeValid(programmaCode.value) && programmaCode.value.trim() !== vat.value.trim()) {
-      //         throw "Codice fiscale non valido";
-      //       }
-      //     }
-
-      //     if (vat.value.trim() !== '') {
-      //       if (!isVatValid(vat.value)) {
-      //         throw "Partita IVA non valida";
-      //       }
-      //     }
-
-      //     if (pec.value.trim() === '' && sdi.value.trim() === '') {
-      //       throw "Richiesta PEC o SDI";
-      //     }
-
-      //     if (pec.value.trim() !== '') {
-      //       if (!isPecValid(pec.value)) {
-      //         throw "PEC non valida";
-      //       }
-      //     }
-
-      //     if (sdi.value.trim() !== '') {
-      //       if (!isSdiValid(sdi.value)) {
-      //         throw "SDI richiede 7 lettere";
-      //       }
-      //     }
-      //     break;
-
-      //   case 'public-administration':
-      //     if (company.value.trim() === '') {
-      //       throw "Nome compagnia richiesto";
-      //     }
-
-      //     if (programmaCode.value.trim() === '' && vat.value.trim() === '') {
-      //      throw "Richiesta partita IVA o codice fiscale";
-      //     }
-
-      //     if (programmaCode.value.trim() !== '') {
-      //       if (!isprogrammaCodeValid(programmaCode.value)) {
-      //         throw "Codice fiscale non valido";
-      //       }
-      //     }
-
-      //     if (vat.value.trim() !== '') {
-      //       if (!isVatValid(vat.value)) {
-      //         throw "Partita IVA non valida";
-      //       }
-      //     }
-
-      //     if (pec.value.trim() === '' && sdi.value.trim() === '') {
-      //       throw "Richiesta PEC o SDI";
-      //     }
-
-      //     if (pec.value.trim() !== '') {
-      //       if (!isPecValid(pec.value)) {
-      //         throw "PEC non valida";
-      //       }
-      //     }
-
-      //     if (sdi.value.trim() !== '') {
-      //       if (!isSdiValid(sdi.value)) {
-      //         throw "SDI richiede 7 lettere";
-      //       }
-      //     }
-
-      //     if (cig.value.trim() !== '') {
-      //       if (!isCigValid(cig.value)) {
-      //         throw "CIG richiede 10 lettere";
-      //       }
-      //     }
-
-      //     if (cup.value.trim() !== '') {
-      //       if (!isCupValid(cup.value)) {
-      //         throw "CUP richiede 15 lettere";
-      //       }
-      //     }
-
-      //     break;
-
-      //   case 'no-profit':
-      //     if (company.value.trim() === '') {
-      //       throw "Nome compagnia richiesto";
-      //     }
-
-      //     if (programmaCode.value.trim() === '' && vat.value.trim() === '') {
-      //       throw "Richiesta partita IVA o codice fiscale";
-      //     }
-
-      //     if (programmaCode.value.trim() !== '') {
-      //       if (!isprogrammaCodeValid(programmaCode.value)) {
-      //         throw "Codice fiscale non valido";
-      //       }
-      //     }
-
-      //     if (vat.value.trim() !== '') {
-      //       if (!isVatValid(vat.value)) {
-      //         throw "Partita IVA non valida";
-      //       }
-      //     }
-
-      //     if (pec.value.trim() === '' && sdi.value.trim() === '') {
-      //       throw "Richiesta PEC o SDI";
-      //     }
-
-      //     if (pec.value.trim() !== '') {
-      //       if (!isPecValid(pec.value)) {
-      //         throw "PEC non valida";
-      //       }
-      //     }
-
-      //     if (sdi.value.trim() !== '') {
-      //       if (!isSdiValid(sdi.value)) {
-      //         throw "SDI richiede 7 lettere";
-      //       }
-      //     }
-      //     break;
-      // }
     }
 
     function report(message) {
@@ -510,7 +148,6 @@ console.log('2');
         report(errorMessage);
         event.preventDefault();
       }
-      console.log('34');
     }
 
     return {
@@ -518,5 +155,5 @@ console.log('2');
     };
   };
   window.programmaDistricts().init();
-  console.log('36');
+
 </script>
